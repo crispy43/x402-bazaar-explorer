@@ -95,6 +95,7 @@ export default function Home() {
         {resources?.map((resource, i) => (
           <ResourceItem key={i} item={resource} />
         ))}
+        {isLoading && <ResourceSkeleton />}
         {!isLoading && offset !== null && <div ref={observerTarget} />}
       </div>
     </div>

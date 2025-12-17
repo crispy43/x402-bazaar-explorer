@@ -6,7 +6,7 @@ import type { HomeJson } from '~/.server/locales/types';
 import { type DiscoverBazaar, discoverBazaarSchema } from '~/.server/schemas/bazaar';
 import { discoverBazaar } from '~/.server/services/bazaar.service';
 
-const DEFAULT_LIMIT = 40;
+const DEFAULT_LIMIT = 400;
 
 export const homeLoader = async ({ request }: LoaderFunctionArgs) => {
   const t = await localize<HomeJson>(request, 'home');
