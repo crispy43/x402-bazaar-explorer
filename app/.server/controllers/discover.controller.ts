@@ -14,7 +14,11 @@ export const homeLoader = async ({ request }: LoaderFunctionArgs) => {
     request,
     discoverBazaarSchema,
   );
-  const resources = discoverBazaar({ type, limit: DEFAULT_LIMIT, offset });
+  const resources = discoverBazaar({
+    type,
+    limit: DEFAULT_LIMIT,
+    offset,
+  });
   return { t, resources };
 };
 
@@ -23,6 +27,10 @@ export const discoverResources = async ({ request }: LoaderFunctionArgs) => {
     request,
     discoverBazaarSchema,
   );
-  const resources = await discoverBazaar({ type, limit: DEFAULT_LIMIT, offset });
-  return { resources };
+  const resources = await discoverBazaar({
+    type,
+    limit: DEFAULT_LIMIT,
+    offset,
+  });
+  return resources;
 };

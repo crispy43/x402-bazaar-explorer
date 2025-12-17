@@ -2678,6 +2678,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"big.js@npm:^7.0.1":
+  version: 7.0.1
+  resolution: "big.js@npm:7.0.1"
+  checksum: 10c0/2ea2c2e263db37b2d5c6ad6246408eabf13ba07776cfd92bf464db201ef9aa9aa1712accbfe97f4aba5d358567ebefe768e8a50102cde11f35ef3497ddc2747c
+  languageName: node
+  linkType: hard
+
 "body-parser@npm:^2.2.1":
   version: 2.2.1
   resolution: "body-parser@npm:2.2.1"
@@ -7258,6 +7265,7 @@ __metadata:
     ajv: "npm:^8.17.1"
     ajv-errors: "npm:^3.0.0"
     ajv-formats: "npm:^3.0.1"
+    big.js: "npm:^7.0.1"
     class-variance-authority: "npm:^0.7.1"
     clsx: "npm:^2.1.1"
     eslint: "npm:^8.38.0"
@@ -7285,6 +7293,7 @@ __metadata:
     simple-git-hooks: "npm:^2.13.0"
     tailwind-merge: "npm:^3.4.0"
     tailwindcss: "npm:^4.1.8"
+    translate: "npm:^3.0.1"
     tw-animate-css: "npm:^1.4.0"
     typescript: "npm:^5.8.3"
     vite: "npm:^6.3.5"
@@ -8411,6 +8420,13 @@ __metadata:
   dependencies:
     tldts: "npm:^7.0.5"
   checksum: 10c0/7b17a461e9c2ac0d0bea13ab57b93b4346d0b8c00db174c963af1e46e4ea8d04148d2a55f2358fc857db0c0c65208a98e319d0c60693e32e0c559a9d9cf20cb5
+  languageName: node
+  linkType: hard
+
+"translate@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "translate@npm:3.0.1"
+  checksum: 10c0/8bad4aace849b0af504c50cc7250cb700308d9a46f11e1edddba4859049fc9549034b02c0badd583f0940b8db8bec33efff942a9423ca184654d25390e9310f7
   languageName: node
   linkType: hard
 

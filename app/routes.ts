@@ -9,5 +9,6 @@ export default [
   ...prefix('api', [
     route('theme', 'routes/apis/theme.ts'),
     route('language', 'routes/apis/language.ts'),
+    route('discover', 'routes/apis/discover.ts'),
   ]),
 ] satisfies RouteConfig;

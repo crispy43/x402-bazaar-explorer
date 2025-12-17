@@ -41,13 +41,13 @@ export default function Header() {
   return (
     <motion.header
       className={cn(
-        't:h-16 d:h-16 fixed z-50 flex h-14 w-full items-center justify-center bg-background',
+        'fixed z-50 flex h-12 w-full items-center justify-center bg-background t:h-14',
         scrolled && 'shadow-sm dark:border-b dark:shadow-none',
       )}
-      initial={{ paddingTop: '16px' }}
+      initial={{ paddingTop: '12px' }}
       animate={
         !scrolled
-          ? { paddingTop: '16px' }
+          ? { paddingTop: '12px' }
           : {
               paddingTop: '0',
             }
