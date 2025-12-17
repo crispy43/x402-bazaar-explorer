@@ -6,6 +6,12 @@ import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
+  optimizeDeps: {
+    exclude: ['@x402/extensions'],
+  },
+  ssr: {
+    noExternal: ['@x402/extensions'],
+  },
   plugins: [
     tailwindcss(),
     reactRouter(),

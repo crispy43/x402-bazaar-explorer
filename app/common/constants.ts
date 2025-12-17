@@ -11,3 +11,6 @@ export enum Theme {
   dark = 'dark',
   light = 'light',
 }
+
+// * CDP Base URL
+export const CDP_BASE_URL = 'https://api.cdp.coinbase.com';

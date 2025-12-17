@@ -1,7 +1,11 @@
+import { useEffect } from 'react';
 import { type LoaderFunctionArgs, type MetaFunction, useLoaderData } from 'react-router';
 
 import { localize } from '~/.server/lib/localization';
+import { validateSearchParams } from '~/.server/lib/utils';
 import type { WelcomeJson } from '~/.server/locales/types';
+import { type DiscoverBazaar, discoverBazaarSchema } from '~/.server/schemas/bazaar';
+import { discoverBazaar } from '~/.server/services/bazaar.service';
 import { Language, Theme } from '~/common/constants';
 import LogoDark from '~/components/svg/logo-dark.svg?react';
 import LogoLight from '~/components/svg/logo-light.svg?react';
@@ -11,21 +15,30 @@ import { useTheme } from '~/hooks/use-theme';
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const t = await localize<WelcomeJson>(request, 'welcome');
-  return { t };
+  const { type, limit, offset } = validateSearchParams<DiscoverBazaar>(
+    request,
+    discoverBazaarSchema,
+  );
+  const resources = await discoverBazaar({ type, limit, offset });
+  return { t, resources };
 };
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  const { t } = data;
+export const meta: MetaFunction<typeof loader> = ({ loaderData }) => {
+  const { t } = loaderData;
   return [{ title: t.meta.title }, { name: 'description', content: t.meta.description }];
 };
 
 export default function Home() {
-  const { t } = useLoaderData<typeof loader>();
+  const { t, resources } = useLoaderData<typeof loader>();
   const [language, setLanguage] = useLanguage();
   const [theme, setTheme] = useTheme();
 
+  useEffect(() => {
+    console.log('Discovered Bazaar Resources:', resources);
+  }, [resources]);
+
   return (
-    <div className="flex h-screen flex-col items-center justify-center">
+    <div className="flex h-screen flex-col items-center justify-center bg-background">
       {theme === Theme.dark ? (
         <LogoDark className="mb-8 h-auto w-40" />
       ) : (
