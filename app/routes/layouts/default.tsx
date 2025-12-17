@@ -14,8 +14,8 @@ export default function DefaultLayout() {
   return (
     <>
       <Header />
-      <div className="'relative t:min-h-[calc(100vh-var(--header-t-h))] d:min-h-[calc(100vh-var(--header-d-h))] flex min-h-[calc(100dvh-var(--header-m-h))] w-full">
-        <main className="d:pb-0 max-w-dvw grow pb-20">
+      <div className="relative flex min-h-[calc(100dvh-var(--header-m-h))] w-full t:min-h-[calc(100vh-var(--header-t-h))] d:min-h-[calc(100vh-var(--header-d-h))]">
+        <main className="max-w-dvw grow pb-20 d:pb-0">
           <Outlet />
         </main>
       </div>
