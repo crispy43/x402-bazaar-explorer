@@ -1,23 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { type LoaderFunctionArgs, type MetaFunction, useLoaderData } from 'react-router';
 
-import { localize } from '~/.server/lib/localization';
-import { validateSearchParams } from '~/.server/lib/utils';
-import type { HomeJson } from '~/.server/locales/types';
-import { type DiscoverBazaar, discoverBazaarSchema } from '~/.server/schemas/bazaar';
-import { discoverBazaar } from '~/.server/services/bazaar.service';
+import { homeLoader } from '~/.server/controllers/discover.controller';
+import { control } from '~/.server/lib/utils';
 import type { FixedDiscoveryResource } from '~/common/bazaar';
 
-const DEFAULT_LIMIT = 20;
+import ResourceItem from './components/resource-item';
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
-  const t = await localize<HomeJson>(request, 'home');
-  const { type, offset } = validateSearchParams<DiscoverBazaar>(
-    request,
-    discoverBazaarSchema,
-  );
-  const resources = discoverBazaar({ type, limit: DEFAULT_LIMIT, offset });
-  return { t, resources };
+export const loader = async (args: LoaderFunctionArgs) => {
+  return control(homeLoader, args);
 };
 
 export const meta: MetaFunction<typeof loader> = ({ loaderData }) => {
@@ -28,12 +19,18 @@ export const meta: MetaFunction<typeof loader> = ({ loaderData }) => {
 export default function Home() {
   const { t, resources: initialResources } = useLoaderData<typeof loader>();
   const [resources, setResources] = useState<FixedDiscoveryResource[]>([]);
+  const [offset, setOffset] = useState<number | null>(null);
   const initializedResources = useRef(false);
   useEffect(() => {
     initialResources
       .then((data) => {
         if (!initializedResources.current) {
-          setResources(data.items);
+          setResources(data.items.filter((item) => item.accepts?.length > 0));
+          const nextOffset =
+            data.items.length + data.pagination.offset < data.pagination.total
+              ? data.items.length + data.pagination.offset
+              : null;
+          setOffset(nextOffset);
           initializedResources.current = true;
         }
       })
@@ -41,17 +38,16 @@ export default function Home() {
   }, [initialResources]);
 
   useEffect(() => {
-    console.log('Discovered Bazaar Resources:', resources);
-  }, [resources]);
+    console.log('resources', resources);
+    console.log('offset', offset);
+  }, [resources, offset]);
 
   return (
-    <div className="mx-auto max-w-7xl px-4 pt-24 pb-8">
-      <h1 className="mb-4 text-2xl font-bold">{t.welcome}</h1>
+    <div className="mx-auto max-w-7xl px-4 pt-26 pb-8">
+      <h1 className="mb-6 text-2xl font-bold tracking-tight">{t.welcome}</h1>
       <div className="grid grid-cols-4 gap-x-3 gap-y-4">
         {resources.map((resource, i) => (
-          <div key={i} className="mb-2 rounded border p-4">
-            <p className="">{resource.resource}</p>
-          </div>
+          <ResourceItem key={i} item={resource} />
         ))}
       </div>
     </div>
