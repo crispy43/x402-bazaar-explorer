@@ -60,7 +60,7 @@ export default function ResourceAccept({ accept }: Props) {
         )}
       </CardHeader>
       <CardContent className="mt-2 space-y-8">
-        <div className="grid grid-cols-4">
+        <div className="grid grid-cols-1 gap-x-1 gap-y-3 t:grid-cols-4">
           <div>
             <p className="text-sm font-medium tracking-tight text-muted-foreground/70">
               {accept.extra?.name}
@@ -97,38 +97,42 @@ export default function ResourceAccept({ accept }: Props) {
           </div>
         </div>
         {/* Input */}
-        {accept.outputSchema?.input && (
-          <div className="space-y-3">
-            <h3 className="text-lg font-medium">Input</h3>
-            {accept.outputSchema.input.pathParams && (
-              <div>
-                <h4 className="font-medium">Path Parameters</h4>
-                <pre className="mt-1 overflow-x-auto rounded bg-muted p-2 text-sm">
-                  {JSON.stringify(accept.outputSchema?.input?.pathParams, null, 2)}
-                </pre>
-              </div>
-            )}
-            {accept.outputSchema?.input?.queryParams && (
-              <div>
-                <h4 className="font-medium">Query Parameters</h4>
-                <pre className="mt-1 overflow-x-auto rounded bg-muted p-2 text-sm">
-                  {JSON.stringify(accept.outputSchema?.input?.queryParams, null, 2)}
-                </pre>
-              </div>
-            )}
-            {accept.outputSchema?.input?.body ??
-              (accept.outputSchema?.input?.bodyFields && (
-                <pre className="mt-1 overflow-x-auto rounded bg-muted p-2 text-sm">
-                  {JSON.stringify(
-                    accept.outputSchema?.input?.body ??
-                      accept.outputSchema?.input?.bodyFields,
-                    null,
-                    2,
-                  )}
-                </pre>
-              ))}
-          </div>
-        )}
+        {accept.outputSchema?.input &&
+          (accept.outputSchema.input.pathParams ||
+            accept.outputSchema.input.queryParams ||
+            accept.outputSchema.input.body ||
+            accept.outputSchema.input.bodyFields) && (
+            <div className="space-y-3">
+              <h3 className="text-lg font-medium">Input</h3>
+              {accept.outputSchema.input.pathParams && (
+                <div>
+                  <h4 className="font-medium">Path Parameters</h4>
+                  <pre className="mt-1 overflow-x-auto rounded bg-muted p-2 text-sm">
+                    {JSON.stringify(accept.outputSchema?.input?.pathParams, null, 2)}
+                  </pre>
+                </div>
+              )}
+              {accept.outputSchema?.input?.queryParams && (
+                <div>
+                  <h4 className="font-medium">Query Parameters</h4>
+                  <pre className="mt-1 overflow-x-auto rounded bg-muted p-2 text-sm">
+                    {JSON.stringify(accept.outputSchema?.input?.queryParams, null, 2)}
+                  </pre>
+                </div>
+              )}
+              {accept.outputSchema?.input?.body ??
+                (accept.outputSchema?.input?.bodyFields && (
+                  <pre className="mt-1 overflow-x-auto rounded bg-muted p-2 text-sm">
+                    {JSON.stringify(
+                      accept.outputSchema?.input?.body ??
+                        accept.outputSchema?.input?.bodyFields,
+                      null,
+                      2,
+                    )}
+                  </pre>
+                ))}
+            </div>
+          )}
         {/* Output */}
         {accept.outputSchema?.output && (
           <div className="space-y-3">

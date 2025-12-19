@@ -7,7 +7,7 @@ export const useTranslate = (text: string, lang?: string) => {
   const handleTranslate = useCallback(
     async (text: string, lang: string) => {
       setData(text);
-      if (lang) {
+      if (text && lang) {
         setIsLoading(true);
         setData(await translate(text, lang));
         setIsLoading(false);
