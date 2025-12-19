@@ -46,8 +46,8 @@ export default function ResourceAccept({ accept }: Props) {
 
   return (
     <Card className="mx-px">
-      <CardHeader>
-        <CardTitle className="flex gap-2">
+      <CardHeader className="px-4 t:px-6">
+        <CardTitle className="flex flex-col gap-1.5 break-all t:flex-row t:gap-2">
           {accept.outputSchema?.input?.method && (
             <Badge className="mt-0.5">
               {accept.outputSchema?.input?.method?.toUpperCase()}
@@ -56,10 +56,12 @@ export default function ResourceAccept({ accept }: Props) {
           <span>{acceptUrl}</span>
         </CardTitle>
         {accept.description && (
-          <CardDescription className="mt-1 text-base">{translatedDesc}</CardDescription>
+          <CardDescription className="mt-1 text-base break-all t:break-normal">
+            {translatedDesc}
+          </CardDescription>
         )}
       </CardHeader>
-      <CardContent className="mt-2 space-y-8">
+      <CardContent className="mt-2 space-y-8 px-4 t:px-6">
         <div className="grid grid-cols-1 gap-x-1 gap-y-3 t:grid-cols-4">
           <div>
             <p className="text-sm font-medium tracking-tight text-muted-foreground/70">

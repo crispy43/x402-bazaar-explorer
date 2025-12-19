@@ -28,9 +28,9 @@ export default function ResourceDialog({ open, onOpenChange, resource }: Props) 
   if (!resource) return null;
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[calc(100dvh-3rem)] overflow-auto t:max-h-[calc(100vh-8rem)] t:min-w-[calc(100dvw-2rem)] d:min-w-5xl">
+      <DialogContent className="max-h-[calc(100dvh-3rem)] overflow-auto px-4 t:max-h-[calc(100vh-8rem)] t:min-w-[calc(100dvw-2rem)] t:px-6 d:min-w-5xl">
         <DialogHeader>
-          <DialogTitle>{resource.resource}</DialogTitle>
+          <DialogTitle className="break-all">{resource.resource}</DialogTitle>
           <DialogDescription>
             {replaceT(t.lastUpdated, {
               date: new Date(resource.lastUpdated).toLocaleString(language),
