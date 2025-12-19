@@ -36,7 +36,7 @@ export default function ResourceDialog({ open, onOpenChange, resource }: Props) 
               date: new Date(resource.lastUpdated).toLocaleString(language),
             })}
           </DialogDescription>
-          <div className="flex gap-2">
+          <div className="flex justify-center gap-2 t:justify-start">
             <Badge variant="outline" className="text-foreground/70">
               V{resource.x402Version}
             </Badge>
