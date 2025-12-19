@@ -88,9 +88,9 @@ export default function Home() {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 pt-26 pb-8">
+    <div className="mx-auto max-w-7xl px-4 pt-22 pb-8 t:pt-26">
       <div className="flex flex-col items-center gap-2 t:flex-row t:gap-4">
-        <h1 className="text-2xl font-bold tracking-tight">{t.welcome}</h1>
+        <h1 className="text-lg font-bold tracking-tight t:text-2xl">{t.welcome}</h1>
         {total !== null && (
           <p className="text-foreground/80">
             {replaceT(t.totalCount, { count: toComma(total) })}
