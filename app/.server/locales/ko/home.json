@@ -1,5 +1,9 @@
 {
   "welcome": "🧭 바자르 마켓플레이스 리소스",
   "totalCount": "총 {{count}}개",
-  "noDescription": "설명이 없습니다"
+  "noDescription": "설명이 없습니다",
+  "lastUpdated": "최종 수정: {{date}}",
+  "network": "네트워크",
+  "payTo": "결제 주소",
+  "mimeType": "MIME 타입"
 }

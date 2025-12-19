@@ -1,5 +1,9 @@
 {
   "welcome": "🧭 Bazaar Marketplace Resources",
   "totalCount": "Total {{count}} items",
-  "noDescription": "No description"
+  "noDescription": "No description",
+  "lastUpdated": "Last updated: {{date}}",
+  "network": "Network",
+  "payTo": "Pay to",
+  "mimeType": "MIME Type"
 }

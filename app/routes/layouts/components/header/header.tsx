@@ -41,7 +41,7 @@ export default function Header() {
   return (
     <motion.header
       className={cn(
-        'fixed z-50 flex h-12 w-full items-center justify-center bg-background t:h-14',
+        'fixed z-10 flex h-12 w-full items-center justify-center bg-background t:h-14',
         scrolled && 'shadow-sm dark:border-b dark:shadow-none',
       )}
       initial={{ paddingTop: '12px' }}

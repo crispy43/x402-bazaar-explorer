@@ -310,7 +310,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.18.3, @babel/runtime@npm:^7.28.4":
+"@babel/runtime@npm:^7.28.4":
   version: 7.28.4
   resolution: "@babel/runtime@npm:7.28.4"
   checksum: 10c0/792ce7af9750fb9b93879cc9d1db175701c4689da890e6ced242ea0207c9da411ccf16dc04e689cc01158b28d7898c40d75598f4559109f761c12ce01e959bf7
@@ -5639,16 +5639,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json-schema-to-ts@npm:^3.1.1":
-  version: 3.1.1
-  resolution: "json-schema-to-ts@npm:3.1.1"
-  dependencies:
-    "@babel/runtime": "npm:^7.18.3"
-    ts-algebra: "npm:^2.0.0"
-  checksum: 10c0/609bae04aa5e860a11b6d30ccf41445fae1c7f66fb600c1d170257cf33aa468aa9d03aa046428c3688aff0ff450c2b0c76584b66fa4a5d0da8e33799e4c439a6
-  languageName: node
-  linkType: hard
-
 "json-schema-traverse@npm:^0.4.1":
   version: 0.4.1
   resolution: "json-schema-traverse@npm:0.4.1"
@@ -7279,7 +7269,6 @@ __metadata:
     eslint-plugin-simple-import-sort: "npm:^12.1.1"
     eslint-plugin-unused-imports: "npm:^4.0.0"
     isbot: "npm:^5.1.28"
-    json-schema-to-ts: "npm:^3.1.1"
     lint-staged: "npm:^15.5.0"
     lucide-react: "npm:^0.513.0"
     motion: "npm:^12.23.26"
@@ -8427,13 +8416,6 @@ __metadata:
   version: 3.0.1
   resolution: "translate@npm:3.0.1"
   checksum: 10c0/8bad4aace849b0af504c50cc7250cb700308d9a46f11e1edddba4859049fc9549034b02c0badd583f0940b8db8bec33efff942a9423ca184654d25390e9310f7
-  languageName: node
-  linkType: hard
-
-"ts-algebra@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "ts-algebra@npm:2.0.0"
-  checksum: 10c0/4ae93bec1bada635bba425854eec323dad50b6ffe86bc04ad2d7f9ce3fb129d673dcf483e19a6e70d07a3a9083e6a0a7f4e004bb8d2164cddc60cc9540ba187f
   languageName: node
   linkType: hard
 
