@@ -7,8 +7,9 @@ interface Props {
 
 export default function ResourceSkeleton({ className }: Props) {
   return (
-    <div className={cn('h-47.5 w-full', className)}>
-      <Skeleton className="h-20 w-full" />
+    <div className={cn('flex h-47.5 flex-col gap-3 rounded border p-4', className)}>
+      <Skeleton className="h-6 w-full" />
+      <Skeleton className="h-6 w-3/4" />
     </div>
   );
 }

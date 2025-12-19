@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable import/no-named-as-default */
 import Big from 'big.js';
+import { useMemo } from 'react';
 import { useLoaderData } from 'react-router';
 
 import type { FixedDiscoveryResource } from '~/common/bazaar';
@@ -12,12 +14,16 @@ import type { loader } from '../home';
 
 interface Props {
   item: FixedDiscoveryResource;
+  onClick?: () => void;
   className?: string;
 }
 
-export default function ResourceItem({ item, className }: Props) {
+export default function ResourceItem({ item, onClick, className }: Props) {
   const { t } = useLoaderData<typeof loader>();
-  const mainAccept = item.accepts[0];
+  const mainAccept = useMemo(
+    () => item.accepts.find((a) => !!a.description) ?? item.accepts[0],
+    [item.accepts],
+  );
   const [language] = useLanguage();
   const [translatedDesc] = useTranslate(
     mainAccept.description,
@@ -26,10 +32,13 @@ export default function ResourceItem({ item, className }: Props) {
 
   return (
     <div
+      tabIndex={0}
+      role="button"
       className={cn(
         'flex h-47.5 flex-col gap-3 rounded border bg-accent/40 p-4 hover:bg-accent/80',
         className,
       )}
+      onClick={onClick}
     >
       {mainAccept.description ? (
         <h3 className="line-clamp-3 text-foreground/90">
@@ -43,22 +52,21 @@ export default function ResourceItem({ item, className }: Props) {
           V{item.x402Version}
         </Badge>
         <Badge variant="outline" className="text-foreground/70">
-          {mainAccept.network}
-        </Badge>
-        <Badge variant="outline" className="text-foreground/70">
           {item.type.toUpperCase()}
         </Badge>
       </div>
-      <div className="mt-4 flex w-full items-baseline justify-between">
-        <p className="text-sm font-medium tracking-tight text-muted-foreground/80">
-          {mainAccept.extra?.name}
-        </p>
-        {mainAccept.maxAmountRequired && (
-          <p className="font-medium tabular-nums">
-            {toComma(Big(mainAccept.maxAmountRequired).div(1e6).toNumber(), 6)}
+      {(mainAccept.extra?.name === 'USD Coin' || mainAccept.extra?.name === 'USDC') && (
+        <div className="mt-4 flex w-full items-baseline justify-between">
+          <p className="text-sm font-medium tracking-tight text-muted-foreground/80">
+            {mainAccept.extra?.name}
           </p>
-        )}
-      </div>
+          {mainAccept.maxAmountRequired && (
+            <p className="font-medium tabular-nums">
+              {toComma(Big(mainAccept.maxAmountRequired).div(1e6).toNumber(), 6)}
+            </p>
+          )}
+        </div>
+      )}
     </div>
   );
 }

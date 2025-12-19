@@ -9,6 +9,7 @@ import useObserver from '~/hooks/use-observer';
 import { formatQuery, replaceT, toComma } from '~/lib/utils';
 import type { loader as discoverApiLoader } from '~/routes/apis/discover';
 
+import ResourceDialog from './components/resource-dialog';
 import ResourceItem from './components/resource-item';
 import ResourceSkeleton from './components/resource-skeleton';
 
@@ -76,14 +77,20 @@ export default function Home() {
     },
   );
 
-  useEffect(() => {
-    console.info('resources', resources);
-  }, [resources]);
+  const [open, setOpen] = useState(false);
+  const [selectedResource, setSelectedResource] = useState<FixedDiscoveryResource | null>(
+    null,
+  );
+  const handleSelectResource = (resource: FixedDiscoveryResource) => {
+    console.info('resource', resource);
+    setSelectedResource(resource);
+    setOpen(true);
+  };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 pt-26 pb-8">
+    <div className="mx-auto max-w-7xl px-4 pt-22 pb-8 t:pt-26">
       <div className="flex flex-col items-center gap-2 t:flex-row t:gap-4">
-        <h1 className="text-2xl font-bold tracking-tight">{t.welcome}</h1>
+        <h1 className="text-lg font-bold tracking-tight t:text-2xl">{t.welcome}</h1>
         {total !== null && (
           <p className="text-foreground/80">
             {replaceT(t.totalCount, { count: toComma(total) })}
@@ -91,12 +98,21 @@ export default function Home() {
         )}
       </div>
       <div className="mt-6 grid grid-cols-1 gap-x-3 gap-y-4 t:grid-cols-2 d:grid-cols-4">
-        {resources === null && <ResourceSkeleton />}
+        {resources === null &&
+          Array.from({ length: 8 }).map((_, i) => <ResourceSkeleton key={i} />)}
         {resources?.map((resource, i) => (
-          <ResourceItem key={i} item={resource} />
+          <ResourceItem
+            key={i}
+            item={resource}
+            onClick={() => handleSelectResource(resource)}
+            className="cursor-pointer"
+          />
         ))}
+        {isLoading && <ResourceSkeleton />}
         {!isLoading && offset !== null && <div ref={observerTarget} />}
       </div>
+
+      <ResourceDialog resource={selectedResource} open={open} onOpenChange={setOpen} />
     </div>
   );
 }
