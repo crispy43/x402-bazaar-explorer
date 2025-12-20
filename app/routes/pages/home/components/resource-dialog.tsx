@@ -47,7 +47,7 @@ export default function ResourceDialog({ open, onOpenChange, resource }: Props) 
         </DialogHeader>
 
         <div className="max-w-full overflow-auto">
-          <div className="my-4">
+          <div className="my-4 space-y-6">
             {resource.accepts.map((accept, i) => (
               <ResourceAccept key={i} accept={accept} />
             ))}
