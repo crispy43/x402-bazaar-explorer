@@ -1,8 +1,12 @@
 # x402 Bazaar Explorer
 
-간단한 x402 Bazaar 마켓플레이스 탐색기입니다.
+간단한 x402 바자르(Bazaar) 마켓플레이스 탐색기입니다. JSON 형식의 바자르 판매 정보를 웹 UI로 확인할 수 있습니다.
 
-## 설치
+## 라이브 웹페이지
+
+[바자르 탐색기](https://bazaar.boutlet.app/)에서 배포된 탐색기 페이지를 확인할 수 있습니다.
+
+## 실행 전 설치
 
 로컬에 20버전 이상의 node.js가 설치되어 있어야합니다.
 패키지 매니저는 yarn 4.9.2 버전을 사용합니다.
@@ -13,35 +17,38 @@
 yarn
 ```
 
-환경변수를 설정합니다. 아래 커맨드로 .env.example을 복사하여 .env 파일을 복사하여 만들어 줍니다.
+커스텀 Facilitator 연결과 세션 비밀키 값 변경이 필요한 경우 환경변수를 설정합니다. 아래 커맨드로 .env.example을 복사하여 .env 파일을 생성합니다.
 
 ```bash
 cp .env.example .env
 ```
 
-.env를 로컬 개발 환경에 맞게 수정해줍니다.
+다음 환경 변수를 설정합니다. 모든 환경변수는 선택적이며 `FACILITATOR_URL`이 없을 경우 기본 CDP Facilitator로 연결됩니다.
+
+- `FACILITATOR_URL` - Facilitator URL (List Resources 옵션이 활성화되지 않은 Facilitator의 경우 바자르 목록을 반환하지 않음)
+- `SESSION_SECRET` - 테마와 언어 설정 세션에 사용되는 비밀키
 
 ## 실행 및 배포
 
-### 개발 환경 실행
+### 개발 환경으로 실행
 
 ```bash
 yarn dev
 ```
 
-### 배포 전 빌드
+### 서버 빌드
 
 ```bash
 yarn build
 ```
 
-### 배포 앱 실행
+### 빌드된 서버 실행
 
 ```bash
 yarn start
 ```
 
-(`yarn build`후에 `yarn start`로 실행하게 되면 더 이상 .env 파일의 환경 변수는 참조되지 않습니다)
+(참고: `yarn build`후에 `yarn start`로 빌드된 서버를 실행하게 되면 더 이상 .env 파일의 환경 변수는 참조되지 않습니다)
 
 ## 구조
 
@@ -91,7 +98,3 @@ yarn start
 ├── vite.config.ts          # Vite 설정
 └── yarn.lock
 ```
-
-## 가이드
-
-준비 중

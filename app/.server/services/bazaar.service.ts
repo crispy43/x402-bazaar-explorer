@@ -2,10 +2,12 @@ import { HTTPFacilitatorClient } from '@x402/core/http';
 import { withBazaar } from '@x402/extensions/bazaar';
 
 import type { FixedDiscoveryResourcesResponse } from '~/common/bazaar';
-import { CDP_BASE_URL } from '~/common/constants';
+import { CDP_FACILITATOR } from '~/common/constants';
+
+import { env } from '../lib/utils';
 
 const facilitatorClient = withBazaar(
-  new HTTPFacilitatorClient({ url: `${CDP_BASE_URL}/platform/v2/x402` }),
+  new HTTPFacilitatorClient({ url: env('FACILITATOR_URL', CDP_FACILITATOR) }),
 );
 
 export type ExtendedDiscoveryResourcesResponse = FixedDiscoveryResourcesResponse & {

@@ -11,7 +11,7 @@ export const getLanguageSession = async (request: Request) => {
     cookie: {
       name: 'language',
       secure: true,
-      secrets: [process.env.SESSION_SECRET ?? ''],
+      secrets: [process.env.SESSION_SECRET ?? 's3cr3t'],
       sameSite: 'lax',
       path: '/',
       httpOnly: true,
@@ -34,7 +34,7 @@ export const getThemeSession = async (request: Request) => {
     cookie: {
       name: 'theme',
       secure: true,
-      secrets: [process.env.SESSION_SECRET ?? ''],
+      secrets: [process.env.SESSION_SECRET ?? 's3cr3t'],
       sameSite: 'lax',
       path: '/',
       httpOnly: true,
