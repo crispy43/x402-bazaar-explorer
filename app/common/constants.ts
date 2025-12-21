@@ -14,3 +14,4 @@ export enum Theme {
 
 // * CDP Base URL
 export const CDP_BASE_URL = 'https://api.cdp.coinbase.com';
+export const CDP_FACILITATOR = `${CDP_BASE_URL}/platform/v2/x402`;
