@@ -28,6 +28,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "isbot": "^5.1.28",
+    "json-schema-to-ts": "^3.1.1",
     "lucide-react": "^0.513.0",
     "motion": "^12.23.26",
     "react": "^19.2.3",
